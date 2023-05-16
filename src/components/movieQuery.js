@@ -1,15 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import CollectionCard from './CollectionCard';
 import MovieCard from './MovieCard';
-export default function MovieQuery(items) {
-    const [data,setData] = useState(null);
+
+export default function MovieQuery({data, sortBy}) {
+    const [moviesData,setMoviesData] = useState(null);
     const[error,setError] = useState(null);
     const[loading,setLoading] = useState(true);
-    const movie = Object.keys(items).map(key => items[key]);
-    const Url = `https://www.omdbapi.com/?apikey=48897788&t=`+ movie
+    const[searchUrl, setSearchUrl] = useState(null);
+    const UrlByTitle = `https://www.omdbapi.com/?apikey=48897788&t=${data}`;
+    const UrlByCollection = `https://www.omdbapi.com/?apikey=48897788&s=${data}`;
     useEffect(
         ()=>{
+            const sortMovies = (movies) => {
+                // Triez les films en fonction de la valeur de 'sortBy'
+                switch (sortBy) {
+                    case 'year':
+                        return movies.sort((a, b) => a.Year.localeCompare(b.Year));
+                    case 'revenue':
+                        return movies.sort((a, b) => a.BoxOffice - b.BoxOffice);
+                    case 'duration':
+                        return movies.sort((a, b) => a.Runtime - b.Runtime);
+                    default:
+                        return movies;
+                }
+            };
+            
+            if(data.includes("*")) {
+                setSearchUrl(UrlByCollection);
+            } else {
+                setSearchUrl(UrlByTitle);
+            }
+
             //traitement des données (requète fetch)
-            fetch(Url)
+            fetch(searchUrl)
             .then((response)=> {
                 if(!response.ok) {
                     throw new Error("L'API ne répond pas !");
@@ -17,7 +40,14 @@ export default function MovieQuery(items) {
                 return response.json();
             })
             .then((actualData)=> {
-                setData([actualData]);
+                if (actualData.Search) {
+                    // Si les résultats sont une collection de films
+                    const sortedData = sortMovies(actualData.Search);
+                    setMoviesData(sortedData);
+                } else {
+                    // Si le résultat est un seul film
+                    setMoviesData([actualData]);
+                }
                 setError(null);
                 // console.log(actualData);
             })
@@ -30,13 +60,23 @@ export default function MovieQuery(items) {
             })
         },
         //tableau des dépendances éventuelles (qui déclenchent l'effet)
-        [Url]
-    )
+        [data, sortBy, UrlByCollection, UrlByTitle, searchUrl]);
+
+        
+    
     return(
         <> 
             { loading && <div> données en chargement... </div> }
             { error && <div>erreur : {error}</div> }
-            { data && <MovieCard data={data} /> }
+            { data && ( 
+                <>
+                { searchUrl === UrlByCollection ? (
+                  <CollectionCard data={moviesData} />
+                ) : (
+                  <MovieCard data={moviesData} />
+                )}
+              </>
+            )}
         </>
     )
 }

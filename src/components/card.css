@@ -1,5 +1,6 @@
 .movieCard{
     width: 40%;
+    height: 300px;
     margin:auto;
     margin-top: 5%;
     padding: 2%;
@@ -11,6 +12,7 @@
 .movieCard img {
     float:left;
     height:280px;
+    width: 210px;
 }
 body{
     background-image:url('../images/cinema.jpg');
@@ -43,7 +45,7 @@ form input {
     padding: 5px;
     font-size: 20px;
     border: none;
-    outline: none
+    outline: none;
 }
 form button {
     border-top-right-radius:5px;
@@ -68,4 +70,11 @@ form label{
 .max{
     color: #e50914;
     font-size: 30px;
+}
+.trie{
+    background-color: white;
+    margin-top: 5px;
+    padding:5px;
+    font-size: 19px;
+    
 }
