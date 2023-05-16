@@ -3,16 +3,19 @@
     margin:auto;
     margin-top: 5%;
     padding: 2%;
-    background-color: #190f47;
-    color: white;
+    background-color: rgba(244, 241, 241, 0.582);
+    color: black;
     border-radius: 10px;
+    box-shadow: 0px 5px 20px black;
 }
 .movieCard img {
     float:left;
     height:280px;
 }
 body{
-    background-color: black;
+    background-image:url('../images/cinema.jpg');
+    background-repeat:no-repeat;
+    background-size: cover;
 }
 .titleMovie{
     color: #e50914;
@@ -28,18 +31,41 @@ body{
 }
 form {
     color:white;
+    margin-top: 10%;
 }
 form label {
     margin-right:10px;
+    font-weight: bolder;
 }
 form input {
-    border-radius:5px;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
+    padding: 5px;
+    font-size: 20px;
     border: none;
     outline: none
 }
 form button {
-    border-radius: 80%;
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px;
+    padding:5px;
+    font-size: 20px;
+    background-color: white;
+    border: none;
 }
 form button:hover {
     background-color: #e50914;
+}
+form label{
+    font-size: 20px;
+}
+.star{
+    color: yellow;
+}
+.moviekey{
+    font-weight: bolder;
+}
+.max{
+    color: #e50914;
+    font-size: 30px;
 }

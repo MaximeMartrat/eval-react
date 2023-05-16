@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MovieSearch from './pages/MovieSearch';
 
+
 function App() {
   return (
     <div className="App">
