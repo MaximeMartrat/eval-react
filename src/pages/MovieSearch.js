@@ -21,7 +21,7 @@ export default function MovieSearch() {
                     value={itemName}
                     onChange={ e=> setItemName(e.target.value)}
                 />
-                <button>Search</button>
+                <button>ok</button>
             </form>
             <>
                 {items && <MovieQuery data={items} />}
