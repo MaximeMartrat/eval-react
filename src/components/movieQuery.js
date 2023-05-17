@@ -3,19 +3,21 @@ import CollectionCard from './CollectionCard';
 import MovieCard from './MovieCard';
 
 export default function MovieQuery({data, sortBy}) {
-    const [moviesData,setMoviesData] = useState(null);
+    
+    const[moviesData,setMoviesData] = useState(null);
     const[error,setError] = useState(null);
     const[loading,setLoading] = useState(true);
     const[searchUrl, setSearchUrl] = useState(null);
     const UrlByTitle = `https://www.omdbapi.com/?apikey=48897788&t=${data}`;
     const UrlByCollection = `https://www.omdbapi.com/?apikey=48897788&s=${data}`;
+
     useEffect(
         ()=>{
             const sortMovies = (movies) => {
                 // Triez les films en fonction de la valeur de 'sortBy'
                 switch (sortBy) {
                     case 'year':
-                        return movies.sort((a, b) => a.Year.localeCompare(b.Year));
+                        return movies.sort((a, b) => a.Year - b.Year);
                     case 'revenue':
                         return movies.sort((a, b) => a.BoxOffice - b.BoxOffice);
                     case 'duration':
