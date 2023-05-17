@@ -1,5 +1,15 @@
 .movieCard{
     width: 40%;
+    margin:auto;
+    margin-top: 5%;
+    padding: 2%;
+    background-color: rgba(34, 47, 229, 0.274);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px black;
+}
+.collectionCard {
+    width: 40%;
     height: 300px;
     margin:auto;
     margin-top: 5%;
@@ -10,6 +20,12 @@
     box-shadow: 0px 5px 20px black;
 }
 .movieCard img {
+    float:left;
+    height:280px;
+    width: 210px;
+    box-shadow: 0px 5px 20px black;
+}
+.collectionCard img {
     float:left;
     height:280px;
     width: 210px;
@@ -26,8 +42,7 @@ body{
 .content{
     display:flex;
     flex-direction: column;
-    align-items: center;
-    
+    align-items: center; 
 }
 .content p {
     margin:0;
@@ -76,6 +91,6 @@ form label{
 .trie{
     background-color: white;
     margin-top: 5px;
-    padding:5px;
+    padding: 5px;
     font-size: 19px;  
 }

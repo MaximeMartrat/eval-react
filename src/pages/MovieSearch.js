@@ -3,7 +3,7 @@ import MovieQuery from "../components/movieQuery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass, faM} from "@fortawesome/free-solid-svg-icons";
 
-export default function MovieSearch() {
+export default function MovieSearch({apikey}) {
 
     const [items, setItems] = useState("");
     const [itemName, setItemName] = useState("");
@@ -11,8 +11,8 @@ export default function MovieSearch() {
 
     const addItem = (evt) => {
         evt.preventDefault();
-        setItems(itemName)
-        setItemName("")
+        setItems(itemName);
+        setItemName("");
     }
 
     const handleChange = (e) => {
@@ -40,7 +40,7 @@ export default function MovieSearch() {
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </form>
-            {items && <MovieQuery data={items} sortBy={sortBy} />}
+            {items && <MovieQuery data={items} sortBy={sortBy} apikey={apikey}/>}
         </div>
     )
 

@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import CollectionCard from './CollectionCard';
 import MovieCard from './MovieCard';
 
-export default function MovieQuery({data, sortBy}) {
+export default function MovieQuery({data, sortBy, apikey}) {
     
     const[moviesData,setMoviesData] = useState(null);
     const[error,setError] = useState(null);
     const[loading,setLoading] = useState(true);
     const[searchUrl, setSearchUrl] = useState(null);
-    const UrlByTitle = `https://www.omdbapi.com/?apikey=48897788&t=${data}`;
-    const UrlByCollection = `https://www.omdbapi.com/?apikey=48897788&s=${data}`;
+    const UrlByTitle = `https://www.omdbapi.com/?apikey=${apikey}&t=${data}`;
+    const UrlByCollection = `https://www.omdbapi.com/?apikey=${apikey}&s=${data}`;
 
     useEffect(
         ()=>{
@@ -63,8 +63,6 @@ export default function MovieQuery({data, sortBy}) {
         },
         //tableau des dépendances éventuelles (qui déclenchent l'effet)
         [data, sortBy, UrlByCollection, UrlByTitle, searchUrl]);
-
-        
     
     return(
         <> 
