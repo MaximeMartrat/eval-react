@@ -7,6 +7,7 @@ export default function MovieSearch({apikey}) {
 
     const [items, setItems] = useState("");
     const [itemName, setItemName] = useState("");
+    const [selection, setSelection] = useState('collection');
     const [sortBy, setSortBy] = useState('year');
 
     const addItem = (evt) => {
@@ -16,6 +17,7 @@ export default function MovieSearch({apikey}) {
     }
 
     const handleChange = (e) => {
+        setSelection(e.target.value);
         setSortBy(e.target.value);
     };
 
@@ -31,7 +33,11 @@ export default function MovieSearch({apikey}) {
                     value={itemName}
                     onChange={ e=> setItemName(e.target.value)}
                 />
-                <select id="sort-select" className="trie" value={sortBy} onChange={handleChange}>
+                <select className="trie" value={selection} onChange={handleChange}>
+                    <option value="film">Film</option>
+                    <option value="collection">Collection</option>
+                </select>
+                <select className="trie" value={sortBy} onChange={handleChange}>
                     <option value="year">Année</option>
                     <option value="revenue">Revenu</option>
                     <option value="duration">Durée</option>
@@ -40,7 +46,7 @@ export default function MovieSearch({apikey}) {
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </form>
-            {items && <MovieQuery data={items} sortBy={sortBy} apikey={apikey}/>}
+            {items && <MovieQuery data={items} selection={selection} sortBy={sortBy} apikey={apikey}/>}
         </div>
     )
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CollectionCard from './CollectionCard';
 import MovieCard from './MovieCard';
 
-export default function MovieQuery({data, sortBy, apikey}) {
+export default function MovieQuery({data, sortBy, selection, apikey}) {
     
     const[moviesData,setMoviesData] = useState(null);
     const[error,setError] = useState(null);
@@ -13,6 +13,7 @@ export default function MovieQuery({data, sortBy, apikey}) {
 
     useEffect(
         ()=>{
+
             const sortMovies = (movies) => {
                 // Triez les films en fonction de la valeur de 'sortBy'
                 switch (sortBy) {
@@ -26,10 +27,12 @@ export default function MovieQuery({data, sortBy, apikey}) {
                         return movies;
                 }
             };
-            
-            if(data.includes("*")) {
+
+
+            if(selection === 'collection') {
                 setSearchUrl(UrlByCollection);
-            } else {
+            }
+            if(selection === 'film') {
                 setSearchUrl(UrlByTitle);
             }
 
@@ -62,7 +65,7 @@ export default function MovieQuery({data, sortBy, apikey}) {
             })
         },
         //tableau des dépendances éventuelles (qui déclenchent l'effet)
-        [data, sortBy, UrlByCollection, UrlByTitle, searchUrl]);
+        [data, sortBy, selection, UrlByCollection, UrlByTitle, searchUrl]);
     
     return(
         <> 
