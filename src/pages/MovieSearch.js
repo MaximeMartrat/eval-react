@@ -33,13 +33,13 @@ export default function MovieSearch({apikey}) {
                     value={itemName}
                     onChange={ e=> setItemName(e.target.value)}
                 />
-                <select className="trie" value={selection} onChange={handleChange}>
+                <select className="formSelect" value={selection} onChange={handleChange}>
                     <option value="film">Film</option>
                     <option value="collection">Collection</option>
                 </select>
-                <select className="trie" value={sortBy} onChange={handleChange}>
+                <select className="formSelect" value={sortBy} onChange={handleChange}>
                     <option value="year">Année</option>
-                    <option value="revenue">Revenu</option>
+                    <option value="notes">Note</option>
                     <option value="duration">Durée</option>
                 </select>
                 <button>
